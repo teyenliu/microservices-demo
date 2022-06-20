@@ -381,7 +381,7 @@ spec:
         - name: PORT
           value: "3550"
         - name: EXTRA_LATENCY
-          value: "0.85s"
+          value: "0.1s"
         # - name: DISABLE_STATS
         #   value: "1"
         # - name: DISABLE_TRACING

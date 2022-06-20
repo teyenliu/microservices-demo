@@ -1,0 +1,49 @@
+digraph "" {
+	graph [bb="0,0,983.57,108"];
+	node [label="\N",
+		shape=ellipse
+	];
+	edge [color=black];
+	":10.217.1.102:8080"	 [height=0.5,
+		pos="86.417,90",
+		width=2.4005];
+	":10.217.1.102:8080" -> ":10.217.1.102:8080" [key="{\"kind\":\"other\",\"port\":8080,\"pod_namespace\":\"\",\"pod_name\":\"10.217.1.102\",\"pod_labels\":null,\"pod_appname\":\"\"}>>{\"kind\":\"other\",\"port\":\
+8080,\"pod_namespace\":\"\",\"pod_name\":\"10.217.1.102\",\"pod_labels\":null,\"pod_appname\":\"python\"}",
+	color=blue,
+	pos="e,144.66,76.65 144.66,103.35 169.57,104.4 190.83,99.949 190.83,90 190.83,81.45 175.13,76.961 154.91,76.534"];
+":10.217.1.202" [height=0.5,
+	pos="255.42,90",
+	shape=box,
+	width=1.2971];
+":10.217.1.169:8080" [height=0.5,
+	pos="145.42,18",
+	width=2.4005];
+":10.217.1.202" -> ":10.217.1.169:8080" [key="{\"kind\":\"other\",\"port\":0,\"pod_namespace\":\"\",\"pod_name\":\"10.217.1.202\",\"pod_labels\":null,\"pod_appname\":\"\"}>>{\"kind\":\"other\",\"port\":\
+8080,\"pod_namespace\":\"\",\"pod_name\":\"10.217.1.169\",\"pod_labels\":null,\"pod_appname\":\"server\"}",
+color=blue,
+pos="e,171.65,35.171 227.66,71.831 213.29,62.429 195.61,50.855 180.33,40.852"];
+"default:app=frontend:8080" [height=0.5,
+pos="364.42,18",
+width=3.1843];
+":10.217.1.202" -> "default:app=frontend:8080" [key="{\"kind\":\"other\",\"port\":0,\"pod_namespace\":\"\",\"pod_name\":\"10.217.1.202\",\"pod_labels\":null,\"pod_appname\":\"\"}>>{\"kind\":\"pod\",\"port\":\
+8080,\"pod_namespace\":\"default\",\"pod_name\":\"frontend-8d8958c77-2chw9\",\"pod_labels\":{\"app\":\"frontend\",\"pod-template-hash\":\"8d8958c77\"},\"\
+pod_appname\":\"server\"}",
+color=blue,
+pos="e,337.67,35.665 282.92,71.831 296.95,62.568 314.16,51.198 329.15,41.297"];
+"default:app=emailservice:8080" [height=0.5,
+pos="450.42,90",
+width=3.631];
+"default:app=emailservice:8080" -> "default:app=emailservice:8080" [key="{\"kind\":\"pod\",\"port\":8080,\"pod_namespace\":\"default\",\"pod_name\":\"emailservice-5db6c8b59f-69s22\",\"pod_labels\":{\"app\":\"emailservice\",\"\
+pod-template-hash\":\"5db6c8b59f\"},\"pod_appname\":\"\"}>>{\"kind\":\"pod\",\"port\":8080,\"pod_namespace\":\"default\",\"pod_name\":\"emailservice-5db6c8b59f-69s22\",\"\
+pod_labels\":{\"app\":\"emailservice\",\"pod-template-hash\":\"5db6c8b59f\"},\"pod_appname\":\"python\"}",
+color=blue,
+pos="e,537.49,76.553 537.49,103.45 571.15,104.04 599.13,99.562 599.13,90 599.13,81.409 576.55,76.918 547.54,76.528"];
+"default:app=recommendationservice:8080" [height=0.5,
+pos="791.42,90",
+width=4.8377];
+"default:app=recommendationservice:8080" -> "default:app=recommendationservice:8080" [key="{\"kind\":\"pod\",\"port\":8080,\"pod_namespace\":\"default\",\"pod_name\":\"recommendationservice-75d7cd8d5c-29vdg\",\"pod_labels\":{\"app\":\"recommendationservice\",\"\
+pod-template-hash\":\"75d7cd8d5c\"},\"pod_appname\":\"\"}>>{\"kind\":\"pod\",\"port\":8080,\"pod_namespace\":\"default\",\"pod_name\":\"recommendationservice-75d7cd8d5c-29vdg\",\"\
+pod_labels\":{\"app\":\"recommendationservice\",\"pod-template-hash\":\"75d7cd8d5c\"},\"pod_appname\":\"python\"}",
+color=blue,
+pos="e,907.26,76.517 907.26,103.48 949.26,103.81 983.57,99.316 983.57,90 983.57,81.448 954.66,76.959 917.43,76.533"];
+}

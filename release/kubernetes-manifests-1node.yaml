@@ -57,6 +57,7 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service
@@ -125,6 +126,7 @@ spec:
             limits:
               cpu: 200m
               memory: 128Mi
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service
@@ -159,11 +161,11 @@ spec:
         ports:
         - containerPort: 8080
         readinessProbe:
-          periodSeconds: 15
+          periodSeconds: 5
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:8080"]
         livenessProbe:
-          periodSeconds: 15
+          periodSeconds: 5
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:8080"]
         env:
@@ -184,6 +186,7 @@ spec:
           limits:
             cpu: 200m
             memory: 450Mi
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service
@@ -266,6 +269,7 @@ spec:
             limits:
               cpu: 200m
               memory: 128Mi
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service
@@ -328,6 +332,7 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service
@@ -364,8 +369,6 @@ spec:
         env:
         - name: PORT
           value: "3550"
-        # - name: EXTRA_LATENCY
-        #   value: "0.85s"
         # - name: DISABLE_STATS
         #   value: "1"
         # - name: DISABLE_TRACING
@@ -387,6 +390,7 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service
@@ -443,6 +447,7 @@ spec:
           periodSeconds: 10
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:7070", "-rpc-timeout=5s"]
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service
@@ -478,8 +483,8 @@ spec:
       containers:
       - name: main
         image: gcr.io/google-samples/microservices-demo/loadgenerator:v0.2.0
-        command: [ "/bin/bash", "-c", "--" ]
-        args: [ "while true; do echo 'loadgenerator is alive'; sleep 60;done" ]
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do echo 'lodadgenerator is alive'; sleep 10;done"]
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
@@ -492,6 +497,7 @@ spec:
           limits:
             cpu: 500m
             memory: 512Mi
+      nodeName: worker11
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -535,6 +541,7 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service
@@ -592,6 +599,7 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service
@@ -645,6 +653,7 @@ spec:
       volumes:
       - name: redis-data
         emptyDir: {}
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service
@@ -704,6 +713,7 @@ spec:
           periodSeconds: 15
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:9555"]
+      nodeName: worker11
 ---
 apiVersion: v1
 kind: Service

@@ -57,6 +57,7 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
@@ -70,6 +71,7 @@ spec:
   - name: grpc
     port: 5000
     targetPort: 8080
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -125,6 +127,7 @@ spec:
             limits:
               cpu: 200m
               memory: 128Mi
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
@@ -138,6 +141,7 @@ spec:
   - name: grpc
     port: 5050
     targetPort: 5050
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -184,6 +188,7 @@ spec:
           limits:
             cpu: 200m
             memory: 450Mi
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
@@ -197,6 +202,7 @@ spec:
   - name: grpc
     port: 8080
     targetPort: 8080
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -266,13 +272,14 @@ spec:
             limits:
               cpu: 200m
               memory: 128Mi
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: frontend
   ports:
@@ -280,18 +287,18 @@ spec:
     port: 80
     targetPort: 8080
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend-external
-spec:
-  type: LoadBalancer
-  selector:
-    app: frontend
-  ports:
-  - name: http
-    port: 80
-    targetPort: 8080
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: frontend-external
+#spec:
+#  type: LoadBalancer
+#  selector:
+#    app: frontend
+#  ports:
+#  - name: http
+#    port: 80
+#    targetPort: 8080
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -328,6 +335,7 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
@@ -341,6 +349,7 @@ spec:
   - name: grpc
     port: 50051
     targetPort: 50051
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -364,8 +373,6 @@ spec:
         env:
         - name: PORT
           value: "3550"
-        # - name: EXTRA_LATENCY
-        #   value: "0.85s"
         # - name: DISABLE_STATS
         #   value: "1"
         # - name: DISABLE_TRACING
@@ -387,6 +394,7 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
@@ -400,6 +408,7 @@ spec:
   - name: grpc
     port: 3550
     targetPort: 3550
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -443,6 +452,7 @@ spec:
           periodSeconds: 10
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:7070", "-rpc-timeout=5s"]
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
@@ -456,6 +466,7 @@ spec:
   - name: grpc
     port: 7070
     targetPort: 7070
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -478,8 +489,8 @@ spec:
       containers:
       - name: main
         image: gcr.io/google-samples/microservices-demo/loadgenerator:v0.2.0
-        command: [ "/bin/bash", "-c", "--" ]
-        args: [ "while true; do echo 'loadgenerator is alive'; sleep 60;done" ]
+        #command: ["/bin/bash"]
+        #args: ["-c", "while true; do echo 'lodadgenerator is alive'; sleep 10;done"]
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
@@ -492,6 +503,7 @@ spec:
           limits:
             cpu: 500m
             memory: 512Mi
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -535,6 +547,7 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
@@ -548,6 +561,7 @@ spec:
   - name: grpc
     port: 7000
     targetPort: 7000
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -592,6 +606,7 @@ spec:
           limits:
             cpu: 200m
             memory: 128Mi
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
@@ -605,6 +620,7 @@ spec:
   - name: grpc
     port: 50051
     targetPort: 50051
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -645,6 +661,7 @@ spec:
       volumes:
       - name: redis-data
         emptyDir: {}
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
@@ -658,6 +675,7 @@ spec:
   - name: redis
     port: 6379
     targetPort: 6379
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -704,6 +722,7 @@ spec:
           periodSeconds: 15
           exec:
             command: ["/bin/grpc_health_probe", "-addr=:9555"]
+      nodeName: ubuntu1804-k8s2
 ---
 apiVersion: v1
 kind: Service
@@ -717,4 +736,5 @@ spec:
   - name: grpc
     port: 9555
     targetPort: 9555
+  clusterIP: None
 ---
